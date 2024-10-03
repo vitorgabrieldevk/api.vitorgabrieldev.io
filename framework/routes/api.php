@@ -17,7 +17,7 @@ use App\Http\Controllers\DeliveryMethodController;
 |--------------------------------------------------------------------------|
 */
 
-Route::middleware(['auth:sanctum', 'api.key'])->group(function () {
+Route::middleware(['api.key'])->group(function () {
     // Rotas para gerenciar o usuário
     Route::get('/user', [UserController::class, 'index']);
     

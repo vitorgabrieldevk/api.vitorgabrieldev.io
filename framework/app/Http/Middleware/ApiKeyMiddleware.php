@@ -18,7 +18,6 @@ class ApiKeyMiddleware
     {
         $apiKey = $request->header('API-Key');
 
-        // Verifica se a chave API está presente e é válida
         if ($apiKey !== '123456789') {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
