@@ -1,0 +1,25 @@
+{
+  "name": "api.vitorgabrieldev.io",
+  "version": "1.0.0",
+  "description": "Api | Desenvolvimento",
+  "main": "artisan",
+  "scripts": {
+    "start": "cd framework && composer install && php artisan serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorgabrieldevk/api.vitorgabrieldev.io.git"
+  },
+  "keywords": [
+    "Api",
+    "Vitorgabrieldev",
+    "Projeto",
+    "Laravel"
+  ],
+  "author": "Vitor Gabriel de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitorgabrieldevk/api.vitorgabrieldev.io/issues"
+  },
+  "homepage": "https://github.com/vitorgabrieldevk/api.vitorgabrieldev.io#readme"
+}

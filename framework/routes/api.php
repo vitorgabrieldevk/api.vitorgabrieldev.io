@@ -18,70 +18,76 @@ use App\Http\Controllers\DeliveryMethodController;
 */
 
 Route::middleware(['api.key'])->group(function () {
-    // Rotas para gerenciar o usuário
-    Route::get('/user', [UserController::class, 'index']);
-    
-    Route::get('/profile', [ProfileController::class, 'show']);
-    
-    Route::post('/update-profile', [ProfileController::class, 'update']);
+    /*------------------------------------------------------*/
+    /*                    Rotas para Usuário                 */
+    /*------------------------------------------------------*/
 
-    // Rotas para gerenciar o carrinho
+    Route::prefix('user')->group(function () {
+        Route::get('/user', [UserController::class, 'index']);  // Listagem do usuário
+        Route::get('/profile', [ProfileController::class, 'show']);  // Mostrar perfil do usuário
+        Route::post('/update-profile', [ProfileController::class, 'update']);  // Atualizar perfil do usuário
+    });
+
+    /*------------------------------------------------------*/
+    /*                   Rotas para Carrinho                 */
+    /*------------------------------------------------------*/
+
     Route::prefix('cart')->group(function () {
-        Route::get('/', [CartController::class, 'index']);
-        
-        Route::post('/add', [CartController::class, 'add']);
-        
-        Route::post('/remove', [CartController::class, 'remove']);
-        
-        Route::post('/clear', [CartController::class, 'clear']);
+        Route::get('/', [CartController::class, 'index']);  // Listar itens do carrinho
+        Route::post('/add', [CartController::class, 'add']);  // Adicionar item ao carrinho
+        Route::post('/remove', [CartController::class, 'remove']);  // Remover item do carrinho
+        Route::post('/clear', [CartController::class, 'clear']);  // Limpar o carrinho
     });
 
-    // Rotas para gerenciar pedidos
+    /*------------------------------------------------------*/
+    /*                  Rotas para Pedidos                  */
+    /*------------------------------------------------------*/
+
     Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index']);
-        
-        Route::get('/{order}', [OrderController::class, 'show']);
-        
-        Route::post('/create', [OrderController::class, 'create']);
-        
-        Route::post('/{order}/cancel', [OrderController::class, 'cancel']);
+        Route::get('/', [OrderController::class, 'index']);  // Listar pedidos
+        Route::get('/{order}', [OrderController::class, 'show']);  // Mostrar pedido específico pelo ID
+        Route::post('/create', [OrderController::class, 'create']);  // Criar novo pedido
+        Route::post('/{order}/cancel', [OrderController::class, 'cancel']);  // Cancelar pedido pelo ID
     });
 
-    // Rotas para gerenciar clientes
+    /*------------------------------------------------------*/
+    /*                  Rotas para Clientes                  */
+    /*------------------------------------------------------*/
+
     Route::prefix('customers')->group(function () {
-        Route::get('/', [CustomerController::class, 'index']);
-        
-        Route::post('/create', [CustomerController::class, 'store']);
-        
-        Route::post('/{customer}/update', [CustomerController::class, 'update']);
+        Route::get('/', [CustomerController::class, 'index']);  // Listar clientes
+        Route::post('/create', [CustomerController::class, 'store']);  // Criar novo cliente
+        Route::post('/{customer}/update', [CustomerController::class, 'update']);  // Atualizar cliente
     });
 
-    // Rotas para gerenciar endereços
+    /*------------------------------------------------------*/
+    /*                 Rotas para Endereços                 */
+    /*------------------------------------------------------*/
+
     Route::prefix('addresses')->group(function () {
-        Route::get('/', [AddressController::class, 'index']);
-        
-        Route::post('/add', [AddressController::class, 'store']);
-        
-        Route::post('/{address}/update', [AddressController::class, 'update']);
-        
-        Route::post('/{address}/delete', [AddressController::class, 'destroy']);
+        Route::get('/', [AddressController::class, 'index']);  // Listar endereços
+        Route::post('/add', [AddressController::class, 'store']);  // Adicionar novo endereço
+        Route::post('/{address}/update', [AddressController::class, 'update']);  // Atualizar endereço
+        Route::post('/{address}/delete', [AddressController::class, 'destroy']);  // Deletar endereço
     });
 
-    // Rotas para gerenciar cartões
+    /*------------------------------------------------------*/
+    /*                    Rotas para Cartões                 */
+    /*------------------------------------------------------*/
+
     Route::prefix('cards')->group(function () {
-        Route::get('/', [CardController::class, 'index']);
-        
-        Route::post('/add', [CardController::class, 'store']);
-        
-        Route::post('/{card}/update', [CardController::class, 'update']);
-        
-        Route::post('/{card}/delete', [CardController::class, 'destroy']);
+        Route::get('/', [CardController::class, 'index']);  // Listar cartões
+        Route::post('/add', [CardController::class, 'store']);  // Adicionar novo cartão
+        Route::post('/{card}/update', [CardController::class, 'update']);  // Atualizar cartão
+        Route::post('/{card}/delete', [CardController::class, 'destroy']);  // Deletar cartão
     });
 
-    // Rotas para gerenciar métodos de entrega
+    /*------------------------------------------------------*/
+    /*                Rotas para Métodos de Entrega         */
+    /*------------------------------------------------------*/
+    
     Route::prefix('delivery-methods')->group(function () {
-        Route::get('/', [DeliveryMethodController::class, 'index']);
-        
-        Route::post('/select', [DeliveryMethodController::class, 'select']);
+        Route::get('/', [DeliveryMethodController::class, 'index']);  // Listar métodos de entrega
+        Route::post('/select', [DeliveryMethodController::class, 'select']);  // Selecionar método de entrega
     });
 });
